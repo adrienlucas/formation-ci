@@ -12,3 +12,4 @@ Formation Smile CI
  - https://fr.wikipedia.org/wiki/YAGNI
  - https://fr.wikipedia.org/wiki/Principe_KISS
  - PhpStorm : Settings > Editor >Fonts - Fira Code + Enable font ligatures
+ - https://pastebin.com/xswJVmg5
