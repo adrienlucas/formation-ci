@@ -25,3 +25,7 @@ Formation Smile CI
  - https://lesjoiesducode.fr/
  - https://www.youtube.com/user/afupPHP/videos
  - https://www.youtube.com/user/SensioLabs/videos
+ - https://symfony.com/doc/3.4/templating/overriding.html
+
+
+adrien.lucas@smile.eu
