@@ -2,6 +2,8 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\ContactRequest;
+use AppBundle\FormType\ContactRequestType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -18,22 +20,19 @@ class ContactController extends Controller
      */
     public function addNewContactRequestAction(Request $request)
     {
-        $formBuilder = $this->createFormBuilder(
-            null,
-            ['action' => $this->generateUrl('contact_add_new_contact_request')]
-        );
+        $contactRequest = new ContactRequest();
 
-        $contactForm = $formBuilder
-            ->add('subject', TextType::class)
-            ->add('email', EmailType::class)
-            ->add('message', TextareaType::class)
-            ->add('submit', SubmitType::class)
-            ->getForm();
+        $contactForm = $this->createForm(
+            ContactRequestType::class,
+            $contactRequest,
+            ['action' => $this->generateUrl('contact_add_new_contact_request', ['id'=>$contactRequest->getId()])]
+        );
 
         $contactForm->handleRequest($request);
 
         if ($contactForm->isSubmitted() && $contactForm->isValid()) {
-            // send an email
+            $this->get('app_contact_request_manager')
+                ->persistContactRequest($contactRequest);
 
             return $this->redirectToRoute('app_homepage');
         }
@@ -41,5 +40,37 @@ class ContactController extends Controller
         return $this->render('contact/form.html.twig', [
             'contactForm' => $contactForm->createView()
         ]);
+    }
+
+    /**
+     * @Route("/edit-contact/{id}", name="contact_edit_contact_request")
+     */
+    public function editContactRequestAction(Request $request, ContactRequest $contactRequest)
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+
+        $contactForm = $this->createContactRequestForm($contactRequest);
+
+        $contactForm->handleRequest($request);
+
+        if($contactForm->isSubmitted() && $contactForm->isValid()) {
+            $entityManager->flush();
+        }
+
+        return $this->render('contact/form.html.twig', [
+            'contactForm' => $contactForm->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/delete-contact/{id}")
+     */
+    public function deleteContactRequest(ContactRequest $contactRequest)
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->remove($contactRequest);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_homepage');
     }
 }

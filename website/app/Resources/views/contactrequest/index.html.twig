@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Contactrequests list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Subject</th>
+                <th>Email</th>
+                <th>Message</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for contactRequest in contactRequests %}
+            <tr>
+                <td><a href="{{ path('contactrequest_show', { 'id': contactRequest.id }) }}">{{ contactRequest.id }}</a></td>
+                <td>{{ contactRequest.subject }}</td>
+                <td>{{ contactRequest.email }}</td>
+                <td>{{ contactRequest.message }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('contactrequest_show', { 'id': contactRequest.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('contactrequest_edit', { 'id': contactRequest.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('contactrequest_new') }}">Create a new contactRequest</a>
+        </li>
+    </ul>
+{% endblock %}

@@ -8,10 +8,10 @@
     {{ form_start(contactForm) }}
 
 
-        {{ form_widget(contactForm.subject, {'attr': {'class': 'some-class'}}) }}
-        {{ form_widget(contactForm.email) }}
-        {{ form_widget(contactForm.message) }}
-        {{ form_widget(contactForm.submit) }}
+        {{ form_row(contactForm.subject, {'attr': {'class': 'some-class'}}) }}
+        {{ form_row(contactForm.email) }}
+        {{ form_row(contactForm.message) }}
+        {{ form_row(contactForm.submit) }}
     {{ form_end(contactForm) }}
 
 {% endblock %}
