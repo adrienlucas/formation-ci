@@ -21,3 +21,5 @@ Formation Smile CI
  - https://en.wikipedia.org/wiki/Pair_programming
  - https://symfony.com/doc/3.4/reference/forms/types.html
  - https://knpuniversity.com/
+ - https://www.commitstrip.com/fr
+ - https://lesjoiesducode.fr/
