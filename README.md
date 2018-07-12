@@ -23,3 +23,5 @@ Formation Smile CI
  - https://knpuniversity.com/
  - https://www.commitstrip.com/fr
  - https://lesjoiesducode.fr/
+ - https://www.youtube.com/user/afupPHP/videos
+ - https://www.youtube.com/user/SensioLabs/videos
