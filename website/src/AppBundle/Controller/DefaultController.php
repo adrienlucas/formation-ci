@@ -25,9 +25,20 @@ class DefaultController extends Controller
     /**
      * @Route("/hello/{name}", defaults={"name"="world"}, requirements={"name"="[a-zA-Z]+"})
      */
+    public function totoAction($name)
+    {
+        return $this->render('default/hello.html.twig', [
+            'content' => 'Toto '.$name.'!'
+        ]);
+    }
+
+    /**
+     * @Route("/hello/{name}", defaults={"name"="world"}, requirements={"name"="[a-zA-Z]+"})
+     */
     public function helloWorldAction($name)
     {
-
-        return new Response('Hello '.$name.'!');
+        return $this->render('default/hello.html.twig', [
+            'content' => 'Hello '.$name.'!'
+        ]);
     }
 }

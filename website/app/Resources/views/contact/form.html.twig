@@ -1,0 +1,17 @@
+{% extends 'layout.html.twig' %}
+
+
+{% block title 'Formulaire de contact - ' ~ parent() %}
+
+{% block body %}
+
+    {{ form_start(contactForm) }}
+
+
+        {{ form_widget(contactForm.subject, {'attr': {'class': 'some-class'}}) }}
+        {{ form_widget(contactForm.email) }}
+        {{ form_widget(contactForm.message) }}
+        {{ form_widget(contactForm.submit) }}
+    {{ form_end(contactForm) }}
+
+{% endblock %}
